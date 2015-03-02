@@ -34,9 +34,9 @@ class Graph:
         self.nodes[self.numnodes] = Node(position)
         
         
-    def add_nodes_from_list(self, list):
+    def add_nodes_from_list(self, node_list):
         """Add nodes from list of positions"""
-        for position in list: self.add_node(position)
+        for position in node_list: self.add_node(position)
         
           
     def add_link(self, startnode, endnode, route=1, flow=0.0, delay=0.0, ffdelay=0.0, delayfunc=None):
@@ -61,11 +61,11 @@ class Graph:
                 link.delay = delayfunc.compute_delay(link.flow)
                     
    
-    def add_links_from_list(self, list, delaytype):
+    def add_links_from_list(self, link_list, delaytype):
         """Add links from list
         the list is must contain starnode, endnode, ffdelay, and parameters of delay functions
         """
-        for startnode, endnode, route, ffdelay, parameters in list:
+        for startnode, endnode, route, ffdelay, parameters in link_list:
             self.add_link(startnode, endnode, route, 0.0, ffdelay, ffdelay, delayfunc=create_delayfunc(delaytype, parameters))
    
    
